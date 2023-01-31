@@ -1,4 +1,4 @@
-#Objectives:
+# Objectives:
 1, The goal and idea of the project is to have a python code/application that gets input from the user about what YouTube channel they would like to automatically download the newest video from that channel to a specified location.
 
 2, If the newest video is newer than the last video that has been downloaded then the program will automatically download it.
@@ -9,8 +9,8 @@
 
 5, To have an intuitive and easy to use interface that if anything in the program fails then it can give the user a specified reason of why it failed.
       
-#Success criteria:
+# Success criteria:
 The success of the project would be to have a working model/ prototype of the script being able to send a notice/message to the user of when a YouTube channel has uploaded a new video. A second main goal would then be to have it download the new video and store it on the PC/device the user wants it to be saved on.
 
-#Plan Basics:
+# Plan Basics:
 The very basic plan of our project is to have a working python program that can download videos from YouTube automatically.
