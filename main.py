@@ -19,9 +19,9 @@ ys = yt.streams.get_highest_resolution()
 while True:
     usercheck = input("If you would like to download this video please type 'yes'")
     if usercheck == "yes":
-        continue
-    else:
         break
+    else:
+        continue
 
 # Starting download
 print("Downloading...")
