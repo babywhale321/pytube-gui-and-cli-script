@@ -1,5 +1,6 @@
 import requests
 import re
+from pytube import Channel
 
 while True:
     chanloop = input ("Would you like to download an entire channel or just a video?  c/v")
