@@ -1,3 +1,13 @@
+# Tutorial
+
+1, apt install python3
+
+2, pip install pytube
+
+3, wget https://raw.githubusercontent.com/babywhale321/new-youtube-video-search/main/channel-download.py
+
+4, python3 channel-download.py
+
 # Objectives:
 1, The goal and idea of the project is to have a python code/application that gets input from the user about what YouTube channel they would like to automatically download the newest video from that channel to a specified location.
 
