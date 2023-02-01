@@ -1,6 +1,6 @@
 # Tutorial
 
-1, apt install python3
+1, sudo apt install python3 wget -y
 
 2, pip install pytube
 
