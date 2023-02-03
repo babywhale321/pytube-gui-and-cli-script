@@ -18,7 +18,7 @@ def download_video(link):
         print(f"Length of video: {yt.length}")
         print(f"Rating of video: {yt.rating}")
 
-        usercheck = input("If you would like to download this video? (y)yes/(n)no")
+        usercheck = input("If you would like to download this video? (y)yes/(n)no\n")
         usercheck = usercheck.lower()
         
         if usercheck in ("yes","y"):
@@ -45,7 +45,7 @@ def download_channel(chanlink, resochoice):
     chanurl = url_end[0].lstrip("\"").rstrip("\",\"")
     ytchan = Channel(chanurl)
     
-    new_channel = input ("is this a new channel? (y)yes/(n)no")
+    new_channel = input ("is this a new channel? (y)yes/(n)no\n")
     
     new_channel = new_channel.lower()
     
@@ -96,20 +96,20 @@ def download_channel(chanlink, resochoice):
 
 # This is the actual program.
 
-chanloop = input("Would you like to download an entire channel or just a video? c/v   ")
+chanloop = input("Would you like to download an entire channel or just a video? c/v\n")
 while True:
     if chanloop == "v":
         # Getting video link.
-        link = input("Enter link of the video you would like to download:   ")
+        link = input("Enter link of the video you would like to download:\n")
         # Calling function
         download_video(link)
         # Exiting loop when done.
         break
     if chanloop == "c":
         # Getting channel link.
-        chanlink = input("Enter the Channel link:   ")
+        chanlink = input("Enter the Channel link:\n")
         # Getting resolution choice.
-        resochoice = input("Would you like to download highest quality or lowest quality? h/l?")
+        resochoice = input("Would you like to download highest quality or lowest quality? h/l?\n")
         # Calling function.
         download_channel(chanlink,resochoice)
         # Exiting loop when done.
