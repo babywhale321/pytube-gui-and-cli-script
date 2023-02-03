@@ -18,9 +18,16 @@ def download_video(link):
         print(f"Length of video: {yt.length}")
         print(f"Rating of video: {yt.rating}")
 
-        usercheck = input("If you would like to download this video please type 'yes': ")
-
+        usercheck = input("If you would like to download this video? (y)yes/(n)no")
+        usercheck = usercheck.lower()
+        
         if usercheck == "yes":
+            # Downloads the video at highest resolution if user selected yes.
+            print("Downloading...")
+            yt.streams.get_highest_resolution().download()
+            print("Download completed!!")
+            
+        elif usercheck == "y":
             # Downloads the video at highest resolution if user selected yes.
             print("Downloading...")
             yt.streams.get_highest_resolution().download()
@@ -44,9 +51,13 @@ def download_channel(chanlink, resochoice):
     chanurl = url_end[0].lstrip("\"").rstrip("\",\"")
     ytchan = Channel(chanurl)
 
-    new_channel = input ("is this a new channel? y/n")
-    
+    new_channel = input ("is this a new channel? (y)yes/(n)no")
+    new_channel = new_channel.lower()
+
+    if new_channel == "no":
+        new_channel == "n"
     if new_channel == "n":
+
         # If not a new channel this will compare a log .txt file to a list of video URLs currently hosted on the channel.
         with open(ytchan.channel_name + "new.txt", "w") as file:
             for url in ytchan.video_urls:
