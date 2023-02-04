@@ -44,7 +44,9 @@ def download_channel(chanlink, resochoice):
     url_end = re.findall(regex, pull_data)
     chanurl = url_end[0].lstrip("\"").rstrip("\",\"")
     ytchan = Channel(chanurl)
-    #new channel prompt and looks for a 'n' or 'no' answer
+    
+    #will try to open the file in the (try)
+    #If that fails it will assume that it is a new channel (except)
     try:
 
         # If not a new channel this will compare a log .txt file to a list of video URLs currently hosted on the channel.
