@@ -18,10 +18,9 @@ def download_video(link):
         print(f"Length of video: {yt.length}")
         print(f"Rating of video: {yt.rating}")
 
-        usercheck = input("If you would like to download this video? (y)yes/(n)no\n")
-        usercheck = usercheck.lower()
-        
-        if usercheck in ("yes","y"):
+        usercheck = input("If you would like to download this video please type 'yes': ")
+
+        if usercheck == "yes":
             # Downloads the video at highest resolution if user selected yes.
             print("Downloading...")
             yt.streams.get_highest_resolution().download()
@@ -44,13 +43,10 @@ def download_channel(chanlink, resochoice):
     url_end = re.findall(regex, pull_data)
     chanurl = url_end[0].lstrip("\"").rstrip("\",\"")
     ytchan = Channel(chanurl)
-    
-    new_channel = input ("is this a new channel? (y)yes/(n)no\n")
-    
-    new_channel = new_channel.lower()
-    
-    if new_channel in ("n","no"):
 
+    new_channel = input ("is this a new channel? y/n")
+    
+    if new_channel == "n":
         # If not a new channel this will compare a log .txt file to a list of video URLs currently hosted on the channel.
         with open(ytchan.channel_name + "new.txt", "w") as file:
             for url in ytchan.video_urls:
@@ -96,20 +92,20 @@ def download_channel(chanlink, resochoice):
 
 # This is the actual program.
 
-chanloop = input("Would you like to download an entire channel or just a video? c/v\n")
+chanloop = input("Would you like to download an entire channel or just a video? c/v   ")
 while True:
     if chanloop == "v":
         # Getting video link.
-        link = input("Enter link of the video you would like to download:\n")
+        link = input("Enter link of the video you would like to download:   ")
         # Calling function
         download_video(link)
         # Exiting loop when done.
         break
     if chanloop == "c":
         # Getting channel link.
-        chanlink = input("Enter the Channel link:\n")
+        chanlink = input("Enter the Channel link:   ")
         # Getting resolution choice.
-        resochoice = input("Would you like to download highest quality or lowest quality? h/l?\n")
+        resochoice = input("Would you like to download highest quality or lowest quality? h/l?")
         # Calling function.
         download_channel(chanlink,resochoice)
         # Exiting loop when done.
