@@ -18,9 +18,10 @@ def download_video(link):
         print(f"Length of video: {yt.length}")
         print(f"Rating of video: {yt.rating}")
 
-        usercheck = input("If you would like to download this video please type 'yes': ")
-
-        if usercheck == "yes":
+        usercheck = input("If you would like to download this video? (y)yes/(n)no\n")
+        usercheck = usercheck.lower()
+        
+        if usercheck in ("yes","y"):
             # Downloads the video at highest resolution if user selected yes.
             print("Downloading...")
             yt.streams.get_highest_resolution().download()
@@ -43,10 +44,9 @@ def download_channel(chanlink, resochoice):
     url_end = re.findall(regex, pull_data)
     chanurl = url_end[0].lstrip("\"").rstrip("\",\"")
     ytchan = Channel(chanurl)
+    #new channel prompt and looks for a 'n' or 'no' answer
+    try:
 
-    new_channel = input ("is this a new channel? y/n")
-    
-    if new_channel == "n":
         # If not a new channel this will compare a log .txt file to a list of video URLs currently hosted on the channel.
         with open(ytchan.channel_name + "new.txt", "w") as file:
             for url in ytchan.video_urls:
@@ -65,9 +65,9 @@ def download_channel(chanlink, resochoice):
         for url in downloadlist:
             yt = YouTube(url, on_progress_callback=on_progress)
             print("Downloading...")
-            if resochoice == "l":
+            if resochoice in ("l","low"):
                 yt.streams.first().download()
-            elif resochoice == "h":
+            elif resochoice in ("h","high"):
                 yt.streams.get_highest_resolution().download()
         # Removes the <channelname>old.txt file and renames the new one as <channelname>old.txt to be pulled next time the program runs.
         os.remove(ytchan.channel_name + 'old.txt')
@@ -75,7 +75,7 @@ def download_channel(chanlink, resochoice):
         newname = (ytchan.channel_name + 'old.txt')
         os.rename(oldname, newname)
 
-    else:
+    except:
             # If it is a new channel, creates a file called <channelname>old.txt and writes all video urls on channel to it as a log.
             with open(ytchan.channel_name + "old.txt", "w") as file:
                 for url in ytchan.video_urls:
@@ -84,29 +84,36 @@ def download_channel(chanlink, resochoice):
             print("Downloading...")
             # Downloads all videos on channel in selected resolution.
             for video in ytchan.videos:
-                if resochoice == "l":
+                if resochoice in ("l","low"):
                     video.streams.first().download()
-                elif resochoice == "h":
+                elif resochoice in ("h","high"):
                     video.streams.get_highest_resolution().download()                         
     print("Finished Downloading.")
 
 # This is the actual program.
 
-chanloop = input("Would you like to download an entire channel or just a video? c/v   ")
+
 while True:
-    if chanloop == "v":
+    chanloop = input("Would you like to download an entire channel or just a video? (c)channel(v)video?\n")
+    chanloop = chanloop.lower()
+    
+    if chanloop in ("v","video"):
         # Getting video link.
-        link = input("Enter link of the video you would like to download:   ")
+        link = input("Enter link of the video you would like to download:\n")
         # Calling function
         download_video(link)
         # Exiting loop when done.
         break
-    if chanloop == "c":
+    elif chanloop in ("c","channel"):
         # Getting channel link.
-        chanlink = input("Enter the Channel link:   ")
+        chanlink = input("Enter the Channel link:\n")
         # Getting resolution choice.
-        resochoice = input("Would you like to download highest quality or lowest quality? h/l?")
+        resochoice = input("Would you like to download highest quality or lowest quality? (h)high/(l)low?\n")
+        resochoice = resochoice.lower()
         # Calling function.
         download_channel(chanlink,resochoice)
         # Exiting loop when done.
         break
+    else:
+        print("\nError: That was not a valid response. Please try again\n")
+        continue
