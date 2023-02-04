@@ -8,6 +8,8 @@
 
 4, python3 channel-download.py
 
+Note: if your having issues downloading a whole channel please read this article. https://stackoverflow.com/questions/74334535/pytube-channel-video-urls-is-does-not-working
+
 # Objectives:
 1, The goal and idea of the project is to have a python code/application that gets input from the user about what YouTube channel they would like to automatically download the newest video from that channel to a specified location.
 
