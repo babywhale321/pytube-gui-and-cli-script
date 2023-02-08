@@ -4,6 +4,14 @@ import re
 from pytube import YouTube, Channel
 from pytube.cli import on_progress
 import os
+
+#colors for text
+class bcolors:
+    OKGREEN = '\033[92m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+
 # Establishing functions to be used in code
 
 # This function will download a single video after user provides a link.
@@ -50,13 +58,23 @@ def download_channel(chanlink, resochoice):
     try:
 
         # If not a new channel this will compare a log .txt file to a list of video URLs currently hosted on the channel.
+        print("Trying to open" ,ytchan.channel_name + "new.txt\n")
         with open(ytchan.channel_name + "new.txt", "w") as file:
             for url in ytchan.video_urls:
-                file.write(str(url) + "\n")
+                file.write(str(url) + "\n")        
+        print(bcolors.OKGREEN + "Opening" ,ytchan.channel_name + "new.txt","was successfull\n" + bcolors.ENDC)
+           
+        
+        print("Trying to open" ,ytchan.channel_name + "old.txt\n")        
         with open(ytchan.channel_name + 'old.txt', 'r') as oldlist:
             videolist1 = oldlist.read()
+        print(bcolors.OKGREEN + "Opening" ,ytchan.channel_name + "old.txt","was successfull\n" + bcolors.ENDC)  
+        
+        print("Creating new updated list under", ytchan.channel_name + "new.txt\n")
         with open(ytchan.channel_name + 'new.txt', 'r') as newlist:
             videolist2 = newlist.read()
+        print(bcolors.OKGREEN + "Creating" ,ytchan.channel_name + "new.txt","was successfull\n" + bcolors.ENDC) 
+            
         # Saves all the new URLs into a list
         downloadlist = []
         videosplit = videolist2.split()
@@ -64,9 +82,9 @@ def download_channel(chanlink, resochoice):
             if url not in videolist1:
                 downloadlist.append(url)
         # Downloads all the new videos in the selected resolution.
+        print("Downloading... this may take some time...\n")
         for url in downloadlist:
             yt = YouTube(url, on_progress_callback=on_progress)
-            print("Downloading...")
             if resochoice in ("l","low"):
                 yt.streams.first().download()
             elif resochoice in ("h","high"):
@@ -78,12 +96,17 @@ def download_channel(chanlink, resochoice):
         os.rename(oldname, newname)
 
     except:
+            print(bcolors.FAIL + "Opening" ,ytchan.channel_name + "old.txt","has failed\n" +  bcolors.ENDC)   
+            print("Assumeing new channel list of videos\n")
             # If it is a new channel, creates a file called <channelname>old.txt and writes all video urls on channel to it as a log.
+        
+            print("Creating" ,ytchan.channel_name + "old.txt\n")   
             with open(ytchan.channel_name + "old.txt", "w") as file:
                 for url in ytchan.video_urls:
                     file.write(str(url) + "\n")
+            print(bcolors.OKGREEN + "Creating" ,ytchan.channel_name + "old.txt","was successfull\n" +  bcolors.ENDC)  
             
-            print("Downloading...")
+            print("Downloading... this may take some time...\n")
             # Downloads all videos on channel in selected resolution.
             for video in ytchan.videos:
                 if resochoice in ("l","low"):
