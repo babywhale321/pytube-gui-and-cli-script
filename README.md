@@ -10,6 +10,22 @@
 
 Note: if your having issues downloading a whole channel please read this article. https://stackoverflow.com/questions/74334535/pytube-channel-video-urls-is-does-not-working
 
+# Testing Dir
+
+## These are required
+
+import requests
+
+import re
+
+from pytube import YouTube, Channel
+
+from pytube.cli import on_progress
+
+import os
+
+from easygui import *
+
 # Objectives:
 1, The goal and idea of the project is to have a python code/application that gets input from the user about what YouTube channel they would like to automatically download the newest video from that channel to a specified location.
 
