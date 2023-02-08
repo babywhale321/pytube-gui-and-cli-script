@@ -2,7 +2,7 @@
 
 1, sudo apt install python3 wget -y
 
-2, pip install pytube requests
+2, pip install pytube requests easygui
 
 3, wget https://raw.githubusercontent.com/babywhale321/new-youtube-video-search/main/channel-download.py
 
