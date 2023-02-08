@@ -4,7 +4,7 @@
 
 2, pip install pytube requests easygui
 
-3, wget https://raw.githubusercontent.com/babywhale321/new-youtube-video-search/main/channel-download.py
+3, wget https://raw.githubusercontent.com/babywhale321/new-youtube-video-search/main/main.py
 
 4, python3 channel-download.py
 
