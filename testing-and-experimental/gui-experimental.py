@@ -12,9 +12,7 @@ class bcolors:
     FAIL = '\033[91m'
     ENDC = '\033[0m'
 
-
 # Establishing functions to be used in code
-
 # This function will download a single video after user provides a link.
 def download_video(link):
     # Using a try/except to handle potential errors.
@@ -110,21 +108,22 @@ def download_channel(chanlink, resochoice):
     print("Finished Downloading.")
 
 # This is the actual program.
-
-
-
-# choices which user can select
 choices = ["Channel", "Video", "Exit"]
-# message / question to be asked
 msg = "Select an option"
-# opening a choice box using our msg and choices
-chanloop = choicebox(msg, choices = choices)
-
+title = "pytube gui"
+# opening a choice box using our msg,title and choices
+chanloop = choicebox(msg, title, choices = choices)
 
 if chanloop == ("Video"):
+    
     #Getting video link.
     text = "Whats the URL?"
-    link = enterbox(text)
+    title = "Whats the youtube url?"
+    link = enterbox(text,title)
+    
+    #exit on cancel
+    if link == None:
+        exit()
     
     #Calling function
     download_video(link)
@@ -133,13 +132,20 @@ elif chanloop == ("Channel"):
     
     #Getting channel link.
     text = "Whats the URL?"
-    chanlink = enterbox(text)
+    title = "Whats the youtube url?"
+    chanlink = enterbox(text,title)
     
+    #exit on cancel
+    if chanlink == None:
+        exit()
+        
     # Getting resolution choice.
     choices = ["Low","High"]
-    msg = "Download Quality?"
-    reply = choicebox(msg, choices = choices)
-
+    title = "Youtube Download Qualitiy"
+    msg = "What download quality?"
+    reply = choicebox(msg,title, choices = choices)
+    
+    #low will equal l and high will equal h
     if reply == "Low":
         resochoice = "l"
         
@@ -147,11 +153,10 @@ elif chanloop == ("Channel"):
         resochoice = "h"
         
     else:
-        print("Exiting...")
         exit()
         
     # Calling function.
     download_channel(chanlink,resochoice)
     
 else:
-    print("Exiting...")
+    exit()
