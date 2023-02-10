@@ -14,7 +14,7 @@ class bcolors:
 
 # Establishing functions to be used in code
 # This function will download a single video after user provides a link.
-def download_video(link):
+def download_video(link, resochoice):
     # Using a try/except to handle potential errors.
     try:
         # Creating a variable to store the YouTube object for ease of use later.
@@ -26,9 +26,15 @@ def download_video(link):
         print(f"Rating of video: {yt.rating}")
 
         print("Downloading...\n")
-        yt.streams.get_highest_resolution().download()
-        print("\n")
         
+        if resochoice in ("l","low"):
+            yt.streams.first().download()
+            print("\n")
+            
+        elif resochoice in ("h","high"):
+            yt.streams.get_highest_resolution().download()
+            print("\n")
+            
     except Exception as e:
         # Notifies user of any error (i.e. video is private or unlisted etc.)
         print(f"An error occurred: {e}")
@@ -109,30 +115,48 @@ def download_channel(chanlink, resochoice):
 
 # This is the actual program.
 choices = ["Channel", "Video", "Exit"]
-msg = "Select an option"
-title = "pytube gui"
+msg = "Select Channel to download an entire channel\nSelect video to download a single video."
+title = "python pytube gui"
 # opening a choice box using our msg,title and choices
 chanloop = choicebox(msg, title, choices = choices)
 
+#if video is selected
 if chanloop == ("Video"):
     
     #Getting video link.
-    text = "Whats the URL?"
-    title = "Whats the youtube url?"
+    text = "What is the YouTube url?"
+    title = "url selection"
     link = enterbox(text,title)
     
     #exit on cancel
     if link == None:
         exit()
     
-    #Calling function
-    download_video(link)
+        # Getting resolution choice.
+    choices = ["Low","High"]
+    title = "Youtube Download Qualitiy"
+    msg = "Download Qualitiy?"
+    reply = choicebox(msg,title, choices = choices)
     
+    #low will equal l and high will equal h
+    if reply == "Low":
+        resochoice = "l"
+        
+    elif reply == "High":
+        resochoice = "h"
+        
+    else:
+        exit()
+        
+    #Calling function
+    download_video(link, resochoice)
+    
+#if channel is selected
 elif chanloop == ("Channel"):
     
     #Getting channel link.
-    text = "Whats the URL?"
-    title = "Whats the youtube url?"
+    text = "What is the Channels url?"
+    title = "channel url selection"
     chanlink = enterbox(text,title)
     
     #exit on cancel
@@ -142,7 +166,7 @@ elif chanloop == ("Channel"):
     # Getting resolution choice.
     choices = ["Low","High"]
     title = "Youtube Download Qualitiy"
-    msg = "What download quality?"
+    msg = "Download Qualitiy?"
     reply = choicebox(msg,title, choices = choices)
     
     #low will equal l and high will equal h
