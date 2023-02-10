@@ -134,8 +134,8 @@ if chanloop == ("Video"):
     
         # Getting resolution choice.
     choices = ["Low","High"]
-    title = "Youtube Download Qualitiy"
-    msg = "Download Qualitiy?"
+    title = "Youtube Download Quality"
+    msg = "Download Quality?"
     reply = choicebox(msg,title, choices = choices)
     
     #low will equal l and high will equal h
@@ -165,8 +165,8 @@ elif chanloop == ("Channel"):
         
     # Getting resolution choice.
     choices = ["Low","High"]
-    title = "Youtube Download Qualitiy"
-    msg = "Download Qualitiy?"
+    title = "Youtube Download Quality"
+    msg = "Download Quality?"
     reply = choicebox(msg,title, choices = choices)
     
     #low will equal l and high will equal h
