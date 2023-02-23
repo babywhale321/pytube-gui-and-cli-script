@@ -6,7 +6,7 @@
 
 3, wget https://raw.githubusercontent.com/babywhale321/new-youtube-video-search/main/main.py
 
-4, python3 channel-download.py
+4, python3 main.py
 
 Note: if your having issues downloading a whole channel please read this article. https://stackoverflow.com/questions/74334535/pytube-channel-video-urls-is-does-not-working
 
