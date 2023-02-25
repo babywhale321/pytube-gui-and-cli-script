@@ -1,18 +1,18 @@
-# Tutorial
+# Installing
 
-1, sudo apt install python3 wget -y
+1, please run windows.ps1 if you are using windows
 
-2, pip install pytube requests easygui
+2, please run linux.sh if you are using debian based linux
 
-3, wget https://raw.githubusercontent.com/babywhale321/new-youtube-video-search/main/main.py
+# How to use
 
-4, python3 main.py
+1, after installing the required programs (' you can run windows.ps1 for windows or linux.sh for linux ')
+
+2, download and run main.py for the cli or gui-main.py for the gui
 
 Note: if your having issues downloading a whole channel please read this article. https://stackoverflow.com/questions/74334535/pytube-channel-video-urls-is-does-not-working
 
-# Testing Dir
-
-## These are required
+## required programs
 
 import requests
 
