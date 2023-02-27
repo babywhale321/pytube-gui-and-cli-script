@@ -87,7 +87,7 @@ def download_channel(chanlink, resochoice):
 while True:
     
     choices = ["Channel", "Video", "Exit"]
-    msg = "Select Channel to download an entire channel\nSelect video to download a single video\n\nNOTE: the downloaded video or channel will be saved in the home directory"
+    msg = "Select channel to download an entire channel\nSelect video to download a single video\n\nWhere videos are saved:\nWindow users: where this program was ran\nLinux users: in the home directory"
     title = "Pytube GUI"
     
     # opening a choice box using our msg,title and choices
@@ -125,14 +125,14 @@ while True:
         #try to download
         try:
             
-            msg = "The download will begin.\n\nYou can watch the progress in your home directory.\nThis may take some time."
+            msg = "The download will begin. This may take some time..."
             title = "Download Confirm"
             
             #user chose continue
             if ccbox(msg, title):
                 #begin download
                 download_video(link, resochoice)
-                msgbox("Download has completed! the saved video is in the home directory.")
+                msgbox("Download has completed!")
                 break
             
             #user chose Cancel
@@ -141,7 +141,7 @@ while True:
             
             #begin download
             download_video(link, resochoice)
-            msgbox("Download has completed! the saved video is in the home directory.")
+            msgbox("Download has completed!")
             break
         
         #ask user if they want to restart   
@@ -188,7 +188,7 @@ while True:
         
         try:
             
-            msg = "The download will begin.\n\nYou can watch the progress in your home directory.\nThis may take some time."
+            msg = "The download will begin. This may take some time..."
             title = "Download Confirm"
             
             #user chose continue
@@ -196,7 +196,7 @@ while True:
 
                 #begin download
                 download_video(chanlink,resochoice)
-                msgbox("Download has completed! the saved channel is in the home directory.")
+                msgbox("Download has completed!")
                 break
             #user chose Cancel
             else:  
