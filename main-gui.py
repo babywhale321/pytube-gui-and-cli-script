@@ -138,11 +138,6 @@ while True:
             #user chose Cancel
             else:  
                 break
-            
-            #begin download
-            download_video(link, resochoice)
-            msgbox("Download has completed!")
-            break
         
         #ask user if they want to restart   
         except:
