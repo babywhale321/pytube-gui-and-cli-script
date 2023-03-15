@@ -1,6 +1,6 @@
 # Installing
 
-1, please run windows.ps1 if you are using windows
+1, please run windows.ps1 if you are using windows ( you may need to set "Set-ExecutionPolicy Unrestricted" in powershell )
 
 2, please run linux.sh if you are using debian based linux
 
